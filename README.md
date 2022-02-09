@@ -8,7 +8,7 @@ Pour le front, vous êtes libre d'utiliser ce que vous souhaitez, Bootstrap, Tai
 
 Vous allez devoir donc intégrer le résultat suivant :
 
-![](step-1.png)
+![](steps/step-1.png)
 
 Concentrez-vous d'abord sur le front si vous préférez. De mon côté, j'ai utilisé Bootstrap avec des cards et des cols tout simplement (text-warning pour le jaune).
 
@@ -23,7 +23,7 @@ Pour commencer le PHP, il faudra créer un tableau PHP multidimensionnel (2 nive
 
 Il faudra lister les avis de manière dynamique :
 
-![](step-2.png)
+![](steps/step-2.png)
 
 On doit afficher la première du nom dans l'avatar. On doit afficher le nombre d'étoiles par rapport à la note du commentaire.
 
@@ -33,7 +33,7 @@ Pour afficher la date correctement, il faudra sûrement regarder de [strtotime](
 
 Il faudra également utiliser les boucles et faire les bons calculs avec le tableau des avis pour que cette partie soit dynamique :
 
-![](step-3.png)
+![](steps/step-3.png)
 
 ## 4 - Base de données
 
@@ -51,8 +51,8 @@ Vous pouvez donc stocker les commentaires de votre tableau PHP dans la base de d
 
 Vous devez maintenant faire fonctionner le formulaire afin de pouvoir ajouter un commentaire dans la base de données. Il faudra bien sûr vérifier les erreurs :
 
-![](step-4.png)
+![](steps/step-4.png)
 
 Si le formulaire est correctement rempli, on ajoute le commentaire dans la base de données et on affiche un message de succès. On prendra également soin de masquer le formulaire en mettant un lien pour rediriger vers la page index.php pour pouvoir ajouter à nouveau un commentaire.
 
-![](step-5.png)
+![](steps/step-5.png)
