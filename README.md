@@ -72,3 +72,21 @@ On ajoutera également une nouvelle colonne `image` de type `VARCHAR` (`null`) s
 On devra stocker le chemin `uploads/review-123456.jpg` dans la colonne `image` au moment de l'`insert`.
 
 ![](steps/step-7.png)
+
+## 7 - Sessions
+
+On va ajouter une partie session sur le projet. On ajoutera un lien pour se connecter en haut à droite de la page.
+
+![](steps/step-8.png)
+
+Le lien aménera vers une nouvelle page login.php qui se contentera d'ajouter un prénom dans la session. On redirige ensuite directement sur la page index.php.
+
+Sur la page index.php, on va maintenant pouvoir vérifier si un prénom est présent dans la session, si c'est le cas, on affichera ce prénom avec un avatar en haut à droite à la place du nouveau lien.
+
+![](steps/step-9.png)
+
+On pré-remplira également le champ prénom quand l'utilisateur essaye d'ajouter un commentaire (voir l'attribut readonly).
+
+![](steps/step-10.png)
+
+On ajoutera ensuite un lien logout.php au clic sur l'avatar. Sur cette page, on se contentera de supprimer le prénom de la session puis de rediriger à nouveau vers index.php
