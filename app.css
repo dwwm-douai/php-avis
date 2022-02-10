@@ -1,0 +1,12 @@
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+}
+
+.avatar h3 {
+    line-height: 80px;
+}
