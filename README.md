@@ -25,7 +25,7 @@ Il faudra lister les avis de manière dynamique :
 
 ![](steps/step-2.png)
 
-On doit afficher la première du nom dans l'avatar. On doit afficher le nombre d'étoiles par rapport à la note du commentaire.
+On doit afficher la première lettre du nom dans l'avatar. On doit afficher le nombre d'étoiles par rapport à la note du commentaire.
 
 Pour afficher la date correctement, il faudra sûrement regarder de [strtotime](https://www.php.net/manual/fr/function.strtotime.php) et [date](https://www.php.net/manual/fr/function.date). Les jours et les mois sont en français mais il y a possibilité de les traduire avec [notre meilleur ami](https://lucidar.me/fr/web-dev/in-php-how-to-display-date-in-french).
 
@@ -69,6 +69,6 @@ On ajoutera également une nouvelle colonne `image` de type `VARCHAR` (`null`) s
 <img src="uploads/review-123456.jpg">
 ```
 
-On devra stocker le chemin `uploads/review-123456.jpg` dans la colonne `image`.
+On devra stocker le chemin `uploads/review-123456.jpg` dans la colonne `image` au moment de l'`insert`.
 
 ![](steps/step-7.png)
