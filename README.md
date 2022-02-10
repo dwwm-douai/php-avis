@@ -56,3 +56,19 @@ Vous devez maintenant faire fonctionner le formulaire afin de pouvoir ajouter un
 Si le formulaire est correctement rempli, on ajoute le commentaire dans la base de données et on affiche un message de succès. On prendra également soin de masquer le formulaire en mettant un lien pour rediriger vers la page index.php pour pouvoir ajouter à nouveau un commentaire.
 
 ![](steps/step-5.png)
+
+## 6 - Upload
+
+On va ajouter la possibilité pour les utilisateurs d'ajouter une photo en plus de leur avis. Il faudra donc modifier le formulaire pour ajouter un fichier (une image de 2mo maximum). La photo n'est pas obligatoire.
+
+![](steps/step-6.png)
+
+On ajoutera également une nouvelle colonne `image` de type `VARCHAR` (`null`) sur la table reviews car il faudra stocker le chemin de l'image afin de l'afficher facilement. Par exemple, on afficera l'image comme ceci :
+
+```html
+<img src="uploads/review-123456.jpg">
+```
+
+On devra stocker le chemin `uploads/review-123456.jpg` dans la colonne `image`.
+
+![](steps/step-7.png)
