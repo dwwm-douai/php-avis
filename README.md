@@ -79,9 +79,9 @@ On va ajouter une partie session sur le projet. On ajoutera un lien pour se conn
 
 ![](steps/step-8.png)
 
-Le lien aménera vers une nouvelle page login.php qui se contentera d'ajouter un prénom dans la session. On redirige ensuite directement sur la page index.php. Ce n'est pas un formulaire, ajoutez simplement le prénom dans la session, au plus simple.
+Le lien aménera vers une nouvelle page login.php qui se contentera d'ajouter un prénom dans la session. On redirige ensuite directement sur la page `index.php`. Ce n'est pas un formulaire, ajoutez simplement le prénom dans la session, au plus simple.
 
-Sur la page index.php, on va maintenant pouvoir vérifier si un prénom est présent dans la session, si c'est le cas, on affichera ce prénom avec un avatar en haut à droite à la place du nouveau lien.
+Sur la page `index.php`, on va maintenant pouvoir vérifier si un prénom est présent dans la session, si c'est le cas, on affichera ce prénom avec un avatar en haut à droite à la place du nouveau lien.
 
 ![](steps/step-9.png)
 
@@ -89,4 +89,4 @@ On pré-remplira également le champ prénom quand l'utilisateur essaye d'ajoute
 
 ![](steps/step-10.png)
 
-On ajoutera ensuite un lien logout.php au clic sur l'avatar. Sur cette page, on se contentera de supprimer le prénom de la session puis de rediriger à nouveau vers index.php
+On ajoutera ensuite un lien logout.php au clic sur l'avatar. Sur cette page, on se contentera de supprimer le prénom de la session puis de rediriger à nouveau vers `index.php`.
