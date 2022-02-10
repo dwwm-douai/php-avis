@@ -150,13 +150,6 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="meal" class="col-lg-4 col-form-label text-lg-end">Repas</label>
-                        <div class="col-lg-6">
-                            <input type="file" class="form-control" name="meal" id="meal" placeholder="Votre repas">
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
                         <div class="col-lg-6 offset-lg-4">
                             <button class="btn btn-primary">Noter</button>
                         </div>
@@ -186,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-end"><?= $review['created_at']; ?></div>
+                        <div class="card-footer text-end"><?= format_date($review['created_at']); ?></div>
                     </div>
                 </div>
             </div>
