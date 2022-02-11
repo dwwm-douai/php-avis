@@ -90,3 +90,17 @@ On pré-remplira également le champ prénom quand l'utilisateur essaye d'ajoute
 ![](steps/step-10.png)
 
 On ajoutera ensuite un lien logout.php au clic sur l'avatar. Sur cette page, on se contentera de supprimer le prénom de la session puis de rediriger à nouveau vers `index.php`.
+
+## 8 - Relations entre tables
+
+Nous allons créer une nouvelle table `restaurants`. Elle contiendra le nom du restaurant ainsi qu'une image.
+
+Nous allons renommer la page `index.php` en `avis.php`. Nous allons créer une nouvelle page `index.php` et afficher la liste des restaurants.
+
+![](steps/step-11.png)
+
+Au clic sur un restaurant, on se rendra sur la page `avis.php` mais il faudra qu'on ajoute l'id du restaurant dans l'URL comme `avis.php?id=5` pour voir les avis du restaurant 5 (Ne fonctionne pas pour l'instant mais ce n'est pas grave).
+
+Une fois ceci fait, nous allons ajouter une nouvelle colonne `restaurant_id` sur la table `reviews`. Vous l'avez compris, on va stocker l'id du restaurant qui a reçu l'avis dans cette colonne, ce qui nous permettra de distinguer les avis de tous les restaurants.
+
+On va maintenant pouvoir modifier la page `avis.php` afin de récupèrer l'id dans l'URL et adapter chaque requête SQL (récupèration des avis et insertion de l'avis) afin de lier les commentaires de cette page au restaurant en question ! On pourra également dynamiser le titre de la page et afficher l'image du restaurant.
