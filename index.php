@@ -29,73 +29,29 @@
                 <div class="row">
                     <div class="col-lg-4 text-center">
                         <h1 class="text-warning my-4">
-                            3.3 / 5
+                            <?= round(reviews_avg($reviews), 1); ?> / 5
                         </h1>
                         <div class="mb-3">
-                            <i class="fas fa-star mr-1 text-warning"></i>
-                            <i class="fas fa-star mr-1 text-warning"></i>
-                            <i class="fas fa-star mr-1 text-warning"></i>
-                            <i class="fas fa-star mr-1 text-warning"></i>
-                            <i class="fas fa-star mr-1 "></i>
+                            <?php for ($i = 0; $i < 5; $i++) { ?>
+                            <i class="fas fa-star mr-1 <?= ($i < ceil(reviews_avg($reviews))) ? 'text-warning' : ''; ?>"></i>
+                            <?php } ?>
                         </div>
-                        <h3>4 avis</h3>
+                        <h3><?= count($reviews); ?> avis</h3>
                     </div>
                     <div class="col-lg-4">
+                        <?php for ($i = 5; $i > 0; $i--) { ?>
                         <div class="row align-items-center">
                             <div class="col">
-                                5 <i class="fas fa-star text-warning"></i>
+                                <?= $i; ?> <i class="fas fa-star text-warning"></i>
                             </div>
                             <div class="col-8">
                                 <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= reviews_percentage_note($reviews, $i); ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-                            <div class="col">(1)</div>
+                            <div class="col">(<?= reviews_count_note($reviews, $i); ?>)</div>
                         </div>
-                        <div class="row align-items-center">
-                            <div class="col">
-                                4 <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <div class="col-8">
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col">(1)</div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col">
-                                3 <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <div class="col-8">
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col">(0)</div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col">
-                                2 <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <div class="col-8">
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col">(2)</div>
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col">
-                                1 <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <div class="col-8">
-                                <div class="progress">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col">(0)</div>
-                        </div>
+                        <?php } ?>
                     </div>
                     <div class="col-lg-4 text-center">
                         <h3 class="mt-4 mb-3">Laissez votre avis</h3>
