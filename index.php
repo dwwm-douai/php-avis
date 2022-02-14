@@ -2,11 +2,12 @@
     require 'helpers.php';
 
     // Les avis
-    $reviews = [
+    /* $reviews = [
         ['name' => 'Fiorella Mota', 'review' => 'Très bon restaurant', 'note' => 5, 'created_at' => '2022-02-09 11:43:12'],
         ['name' => 'Marina Mota', 'review' => 'Super restaurant', 'note' => 4, 'created_at' => '2022-02-04 08:12:45'],
         ['name' => 'Matthieu Mota', 'review' => 'Mauvais restaurant', 'note' => 2, 'created_at' => '2022-02-06 18:23:54'],
-    ];
+    ]; */
+    $reviews = select('SELECT * FROM reviews ORDER BY created_at DESC');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

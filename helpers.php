@@ -4,6 +4,10 @@
  * Moyenne des avis
  */
 function reviews_avg($reviews) {
+    if (count($reviews) == 0) {
+        return 0;
+    }
+
     return array_sum(array_column($reviews, 'note')) / count($reviews);
 }
 
@@ -48,4 +52,21 @@ function format_date($string) {
     );
 
     return $date;
+}
+
+/**
+ * Permet d'établir une connexion à la base de données.
+ */
+function db() {
+    $db = new PDO('mysql:host=localhost;dbname=exercice-sql-1;charset=utf8', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    return $db;
+}
+
+/**
+ * Permet de faire un select en SQL.
+ */
+function select($sql) {
+    return db()->query($sql)->fetchAll();
 }
