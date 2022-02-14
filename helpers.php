@@ -70,3 +70,26 @@ function db() {
 function select($sql) {
     return db()->query($sql)->fetchAll();
 }
+
+/**
+ * Permet de faire un insert en SQL.
+ */
+function insert($sql, $bindings = []) {
+    $query = db()->prepare($sql);
+
+    return $query->execute($bindings);
+}
+
+/**
+ * Permet de récupèrer une donnée dans un formulaire.
+ */
+function post($key) {
+    return $_POST[$key] ?? null;
+}
+
+/**
+ * Permet de vérifier qu'un formulaire est soumis.
+ */
+function submit() {
+    return !empty($_POST);
+}

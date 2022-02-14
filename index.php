@@ -1,6 +1,37 @@
 <?php
     require 'helpers.php';
 
+    // Formulaire
+    $name = post('name');
+    $review = post('review');
+    $note = post('note');
+    $errors = [];
+    $success = null;
+
+    if (submit()) {
+        if (empty($name)) {
+            $errors[] = 'Votre nom est requis.';
+        }
+
+        if (empty($review)) {
+            $errors[] = 'Votre commentaire est requis.';
+        }
+
+        if ($note < 1 || $note > 5) {
+            $errors[] = 'Votre note doit être entre 1 et 5.';
+        }
+
+        if (empty($errors)) {
+            insert('insert into reviews (name, review, note) values (:name, :review, :note)', [
+                'name' => $name,
+                'review' => $review,
+                'note' => $note,
+            ]);
+
+            $success = 'Votre commentaire a bien été ajouté.';
+        }
+    }
+
     // Les avis
     /* $reviews = [
         ['name' => 'Fiorella Mota', 'review' => 'Très bon restaurant', 'note' => 5, 'created_at' => '2022-02-09 11:43:12'],
@@ -62,58 +93,61 @@
             </div>
         </div>
 
-        <div class="card mt-5">
-            <div class="card-header">Publier un avis</div>
-            <div class="card-body">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="mb-3 row">
-                        <label for="name" class="col-lg-4 col-form-label text-lg-end">Nom</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Votre nom" value="">
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="review" class="col-lg-4 col-form-label text-lg-end">Commentaire</label>
-                        <div class="col-lg-6">
-                            <textarea class="form-control" name="review" id="review" placeholder="Votre commentaire"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row align-items-center">
-                        <label for="note" class="col-lg-4 col-form-label text-lg-end">Note</label>
-                        <div class="col-lg-6">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="note" id="note-1" value="1">
-                                <label class="form-check-label" for="note-1">1</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="note" id="note-2" value="2">
-                                <label class="form-check-label" for="note-2">2</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="note" id="note-3" value="3">
-                                <label class="form-check-label" for="note-3">3</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="note" id="note-4" value="4">
-                                <label class="form-check-label" for="note-4">4</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="note" id="note-5" value="5">
-                                <label class="form-check-label" for="note-5">5</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <div class="col-lg-6 offset-lg-4">
-                            <button class="btn btn-primary">Noter</button>
-                        </div>
-                    </div>
-                </form>
+        <?php if ($success) { ?>
+            <div class="alert alert-success mt-5">
+                <?= $success; ?>
             </div>
-        </div>
+            <a href="index.php">Ajouter un autre commentaire</a>
+        <?php } else { ?>
+            <div class="card mt-5">
+                <div class="card-header">Publier un avis</div>
+                <div class="card-body">
+                    <?php if (!empty($errors)) { ?>
+                        <div class="alert alert-danger">
+                            <ul>
+                                <?php foreach ($errors as $error) { ?>
+                                    <li><?= $error; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php } ?>
+
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="mb-3 row">
+                            <label for="name" class="col-lg-4 col-form-label text-lg-end">Nom</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Votre nom" value="<?= $name; ?>">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="review" class="col-lg-4 col-form-label text-lg-end">Commentaire</label>
+                            <div class="col-lg-6">
+                                <textarea class="form-control" name="review" id="review" placeholder="Votre commentaire"><?= $review; ?></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label for="note" class="col-lg-4 col-form-label text-lg-end">Note</label>
+                            <div class="col-lg-6">
+                                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="note" id="note-<?= $i; ?>" value="<?= $i; ?>">
+                                    <label class="form-check-label" for="note-<?= $i; ?>"><?= $i; ?></label>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-lg-6 offset-lg-4">
+                                <button class="btn btn-primary">Noter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <?php } ?>
         
         <div class="py-5">
             <?php foreach ($reviews as $review) { ?>
