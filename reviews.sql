@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : lun. 14 fév. 2022 à 21:08
--- Version du serveur : 10.6.4-MariaDB
--- Version de PHP : 7.4.27
+-- Généré le : ven. 18 fév. 2022 à 11:06
+-- Version du serveur : 10.6.7-MariaDB
+-- Version de PHP : 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,16 +32,18 @@ CREATE TABLE `reviews` (
   `name` varchar(255) NOT NULL,
   `review` text NOT NULL,
   `note` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `reviews`
 --
 
-INSERT INTO `reviews` (`id`, `name`, `review`, `note`, `created_at`) VALUES
-(36, 'Matthieu', 'Ceci est un test', 3, '2022-02-14 21:07:44'),
-(37, 'Fiorella', 'Hello', 5, '2022-02-14 21:07:52');
+INSERT INTO `reviews` (`id`, `name`, `review`, `note`, `created_at`, `image`) VALUES
+(36, 'Matthieu', 'Ceci est un test', 3, '2022-02-14 21:07:44', NULL),
+(37, 'Fiorella', 'Hello', 5, '2022-02-14 21:07:52', NULL),
+(38, 'Toto', 'Salut', 3, '2022-02-14 21:12:55', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -61,7 +63,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT pour la table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

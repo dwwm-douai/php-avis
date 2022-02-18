@@ -5,6 +5,7 @@
     $name = post('name');
     $review = post('review');
     $note = post('note');
+    $meal = files('meal');
     $errors = [];
     $success = null;
 
@@ -21,11 +22,26 @@
             $errors[] = 'Votre note doit être entre 1 et 5.';
         }
 
+        if ($meal['error'] == 0) {
+            if ($meal['size'] > 4096) {
+                $errors[] = 'Votre image doit faire 4ko maximum.';
+            }
+
+            $mime = mime_content_type($meal['tmp_name']);
+
+            if (!in_array($mime, ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'])) {
+                $errors[] = 'Votre fichier doit être une image.';
+            }
+        }
+
         if (empty($errors)) {
-            insert('insert into reviews (name, review, note) values (:name, :review, :note)', [
+            $filename = upload($meal);
+
+            insert('insert into reviews (name, review, note, image) values (:name, :review, :note, :image)', [
                 'name' => $name,
                 'review' => $review,
                 'note' => $note,
+                'image' => $filename,
             ]);
 
             $success = 'Votre commentaire a bien été ajouté.';
@@ -140,6 +156,13 @@
                         </div>
 
                         <div class="mb-3 row">
+                            <label for="meal" class="col-lg-4 col-form-label text-lg-end">Repas</label>
+                            <div class="col-lg-6">
+                                <input type="file" class="form-control" name="meal" id="meal" placeholder="Votre repas">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
                             <div class="col-lg-6 offset-lg-4">
                                 <button class="btn btn-primary">Noter</button>
                             </div>
@@ -148,7 +171,7 @@
                 </div>
             </div>
         <?php } ?>
-        
+
         <div class="py-5">
             <?php foreach ($reviews as $review) { ?>
             <div class="row mb-5">
@@ -168,6 +191,9 @@
                                     <?php } ?>
                                     <p><?= $review['review']; ?></p>
                                 </div>
+                                <?php if ($review['image']) { ?>
+                                <img width="200" src="<?= $review['image']; ?>" alt="<?= $review['name']; ?>">
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="card-footer text-end"><?= format_date($review['created_at']); ?></div>

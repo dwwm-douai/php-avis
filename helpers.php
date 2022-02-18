@@ -88,8 +88,31 @@ function post($key) {
 }
 
 /**
+ * Permet de récupèrer un fichier dans un formulaire.
+ */
+function files($key) {
+    return $_FILES[$key] ?? null;
+}
+
+/**
  * Permet de vérifier qu'un formulaire est soumis.
  */
 function submit() {
     return !empty($_POST);
+}
+
+/**
+ * Permet de faire un upload dans un dossier.
+ */
+function upload($pfile, $directory = 'uploads') {
+    if (!is_dir($directory)) {
+        mkdir($directory);
+    }
+
+    $file = pathinfo($pfile['name']);
+
+    $filename = $file['filename'].'-'.uniqid().'.'.$file['extension'];
+    move_uploaded_file($pfile['tmp_name'], $directory.'/'.$filename);
+
+    return $directory.'/'.$filename;
 }
