@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 /**
  * Moyenne des avis
  */
@@ -115,4 +117,11 @@ function upload($pfile, $directory = 'uploads') {
     move_uploaded_file($pfile['tmp_name'], $directory.'/'.$filename);
 
     return $directory.'/'.$filename;
+}
+
+/**
+ * Permet de récupérer l'utilisateur connecté en session.
+ */
+function user() {
+    return $_SESSION['user'] ?? null;
 }

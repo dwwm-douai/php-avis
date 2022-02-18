@@ -69,7 +69,20 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="my-5">Ch'ti Restaurant</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="my-5">Ch'ti Restaurant</h1>
+
+            <?php if (user()) { ?>
+                <div>
+                    <a href="logout.php"><?= user(); ?></a>
+                    <img class="user rounded-circle ms-3" src="avatar.jpeg" alt="Avatar">
+                </div>
+            <?php } else { ?>
+                <div class="d-flex">
+                    <a class="nav-link" href="login.php">Se connecter</a>
+                </div>
+            <?php } ?>
+        </div>
 
         <div class="card">
             <div class="card-header">Notre moyenne</div>
@@ -132,7 +145,11 @@
                         <div class="mb-3 row">
                             <label for="name" class="col-lg-4 col-form-label text-lg-end">Nom</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Votre nom" value="<?= $name; ?>">
+                                <?php if (user()) { ?>
+                                    <input type="text" readonly class="form-control-plaintext" name="name" id="name" placeholder="Votre nom" value="<?= user(); ?>">
+                                <?php } else { ?>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Votre nom" value="<?= $name; ?>">
+                                <?php } ?>
                             </div>
                         </div>
 
