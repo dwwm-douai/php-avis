@@ -67,10 +67,23 @@ function db() {
 }
 
 /**
- * Permet de faire un select en SQL.
+ * Permet de faire un select en SQL (Plusieurs résultats).
  */
-function select($sql) {
-    return db()->query($sql)->fetchAll();
+function select($sql, $bindings = []) {
+    $query = db()->prepare($sql);
+    $query->execute($bindings);
+
+    return $query->fetchAll();
+}
+
+/**
+ * Permet de faire un select en SQL (1 seul résultat).
+ */
+function selectOne($sql, $bindings = []) {
+    $query = db()->prepare($sql);
+    $query->execute($bindings);
+
+    return $query->fetch();
 }
 
 /**
@@ -107,6 +120,10 @@ function submit() {
  * Permet de faire un upload dans un dossier.
  */
 function upload($pfile, $directory = 'uploads') {
+    if ($pfile['error'] != 0) {
+        return null;
+    }
+
     if (!is_dir($directory)) {
         mkdir($directory);
     }
